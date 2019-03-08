@@ -420,6 +420,8 @@ function showHomePage() {
 //Ahora Crearemos una funcion que nos mostrara las categorias
 function showCategories(){
 
+	var cookieExist = getCookie("userName");
+
 	var show = document.getElementById("Nombre");
 	show.innerHTML = "Categorias";
 
@@ -453,6 +455,9 @@ function showCategories(){
 		var text = document.createTextNode(category.value.description);
 		paragraph.appendChild(text);
 
+		var divbuttons = document.createElement("div");
+		divbuttons.setAttribute("class","d-flex justify-content-between");
+
 		var button = document.createElement("button");
 		button.setAttribute("class","btn btn-primary");
 		button.setAttribute("id","buttonC");
@@ -460,20 +465,41 @@ function showCategories(){
 		button.setAttribute("value",category.value.name);
 		var textB = document.createTextNode(category.value.name);
 		button.appendChild(textB);
-		
+
 		contentP.appendChild(colum);
 		colum.appendChild(content);
 		content.appendChild(body);
 		body.appendChild(image);
 		body.appendChild(paragraph);
-		body.appendChild(button);
-
+		body.appendChild(divbuttons);
+		divbuttons.appendChild(button);
+		
 		button.addEventListener("click",showProductionsC);
+
+		if (cookieExist !== "") {
+
+			var button2 = document.createElement("button");
+			button2.setAttribute("class","btn btn-primary");
+			button2.setAttribute("id","buttonC");
+			button2.setAttribute("type","button");
+			button2.setAttribute("value","");
+			var textB2 = document.createTextNode("Borrar");
+			button2.appendChild(textB2);
+	
+			var button3 = document.createElement("button");
+			button3.setAttribute("class","btn btn-primary");
+			button3.setAttribute("id","buttonC");
+			button3.setAttribute("type","button");
+			button3.setAttribute("value","");
+			var textB3 = document.createTextNode("Modificar");
+			button3.appendChild(textB3);
+	
+			divbuttons.appendChild(button2);
+			divbuttons.appendChild(button3);
+		}
 
 		category = categories.next();
 	}
-
-	var cookieExist = getCookie("userName");
 
 	if (cookieExist !== "") {
 		
@@ -495,22 +521,26 @@ function showCategories(){
 		var text = document.createTextNode("Insertar categoria");
 		paragraph.appendChild(text);
 
-		var button = document.createElement("button");
-		button.setAttribute("class","btn btn-primary");
-		button.setAttribute("id","buttonC");
-		button.setAttribute("type","button");
-		button.setAttribute("value","");
+		var divbuttons = document.createElement("div");
+		divbuttons.setAttribute = ("class","d-flex justify-content-between");
+
+		var button1 = document.createElement("button");
+		button1.setAttribute("class","btn btn-primary");
+		button1.setAttribute("id","buttonC");
+		button1.setAttribute("type","button");
+		button1.setAttribute("value","");
 		var textB = document.createTextNode("Insertar");
-		button.appendChild(textB);
+		button1.appendChild(textB);
 		
 		contentP.appendChild(columN);
 		columN.appendChild(contentN);
 		contentN.appendChild(body);
 		body.appendChild(image);
 		body.appendChild(paragraph);
-		body.appendChild(button);
+		body.appendChild(divbuttons);
+		divbuttons.appendChild(button1);
 
-		button.addEventListener("click",formCategory);
+		button1.addEventListener("click",formCategory);
 
 	}
 }
