@@ -5,3 +5,6 @@ Cookie terminada y primer formulario empezado
 
 #Version 2.0
 Formulario hecho y funcional faltan mas
+
+#Version 2.1
+Formulario de categorias finalizado y demas objetos preparados para hacer sus formularios

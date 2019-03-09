@@ -432,6 +432,49 @@ function showCategories(){
 	contentP.removeChild(contentP.firstChild);
 	}
 
+	if (cookieExist !== "") {
+		
+		var columN = document.createElement("div");
+		columN.setAttribute("class","col-6 col-md-4 mb-4");
+		var contentN = document.createElement("div");
+		contentN.setAttribute("class","card");
+		var image = document.createElement("img");
+		image.setAttribute("class","card-img-top");
+
+		image.setAttribute("src","img/categorias.jpg");
+		image.setAttribute("alt","Gestionar categoria");
+
+		var body = document.createElement("div");
+		body.setAttribute("class","card-body");
+		var paragraph = document.createElement("h5");
+		paragraph.setAttribute("class","card-text font-weight-bold");
+		paragraph.setAttribute("style","max-height:45px; overflow:hidden; min-height:45px");
+		var text = document.createTextNode("Gestionar categorias");
+		paragraph.appendChild(text);
+
+		var divbuttons = document.createElement("div");
+		divbuttons.setAttribute = ("class","d-flex justify-content-between");
+
+		var button1 = document.createElement("button");
+		button1.setAttribute("class","btn btn-primary");
+		button1.setAttribute("id","buttonC");
+		button1.setAttribute("type","button");
+		button1.setAttribute("value","");
+		var textB = document.createTextNode("Gestionar");
+		button1.appendChild(textB);
+		
+		contentP.appendChild(columN);
+		columN.appendChild(contentN);
+		contentN.appendChild(body);
+		body.appendChild(image);
+		body.appendChild(paragraph);
+		body.appendChild(divbuttons);
+		divbuttons.appendChild(button1);
+
+		button1.addEventListener("click",formCategory);
+
+	}
+
 	var video = VideoSystem.getInstance();
 	var categories = video.categories;
 	var category = categories.next();
@@ -449,10 +492,10 @@ function showCategories(){
 
 		var body = document.createElement("div");
 		body.setAttribute("class","card-body");
-		var paragraph = document.createElement("p");
-		paragraph.setAttribute("class","card-text");
+		var paragraph = document.createElement("h5");
+		paragraph.setAttribute("class","card-text font-weight-bold");
 		paragraph.setAttribute("style","max-height:45px; overflow:hidden; min-height:45px");
-		var text = document.createTextNode(category.value.description);
+		var text = document.createTextNode(category.value.name);
 		paragraph.appendChild(text);
 
 		var divbuttons = document.createElement("div");
@@ -463,7 +506,7 @@ function showCategories(){
 		button.setAttribute("id","buttonC");
 		button.setAttribute("type","button");
 		button.setAttribute("value",category.value.name);
-		var textB = document.createTextNode(category.value.name);
+		var textB = document.createTextNode("Ver Producciones");
 		button.appendChild(textB);
 
 		contentP.appendChild(colum);
@@ -476,73 +519,10 @@ function showCategories(){
 		
 		button.addEventListener("click",showProductionsC);
 
-		if (cookieExist !== "") {
-
-			var button2 = document.createElement("button");
-			button2.setAttribute("class","btn btn-primary");
-			button2.setAttribute("id","buttonC");
-			button2.setAttribute("type","button");
-			button2.setAttribute("value","");
-			var textB2 = document.createTextNode("Borrar");
-			button2.appendChild(textB2);
-	
-			var button3 = document.createElement("button");
-			button3.setAttribute("class","btn btn-primary");
-			button3.setAttribute("id","buttonC");
-			button3.setAttribute("type","button");
-			button3.setAttribute("value","");
-			var textB3 = document.createTextNode("Modificar");
-			button3.appendChild(textB3);
-	
-			divbuttons.appendChild(button2);
-			divbuttons.appendChild(button3);
-		}
-
 		category = categories.next();
 	}
 
-	if (cookieExist !== "") {
-		
-		var columN = document.createElement("div");
-		columN.setAttribute("class","col-6 col-md-4 mb-4");
-		var contentN = document.createElement("div");
-		contentN.setAttribute("class","card");
-		var image = document.createElement("img");
-		image.setAttribute("class","card-img-top");
-
-		image.setAttribute("src","img/categorias.jpg");
-		image.setAttribute("alt","insertar categoria");
-
-		var body = document.createElement("div");
-		body.setAttribute("class","card-body");
-		var paragraph = document.createElement("p");
-		paragraph.setAttribute("class","card-text font-weight-bold");
-		paragraph.setAttribute("style","max-height:45px; overflow:hidden; min-height:45px");
-		var text = document.createTextNode("Insertar categoria");
-		paragraph.appendChild(text);
-
-		var divbuttons = document.createElement("div");
-		divbuttons.setAttribute = ("class","d-flex justify-content-between");
-
-		var button1 = document.createElement("button");
-		button1.setAttribute("class","btn btn-primary");
-		button1.setAttribute("id","buttonC");
-		button1.setAttribute("type","button");
-		button1.setAttribute("value","");
-		var textB = document.createTextNode("Insertar");
-		button1.appendChild(textB);
-		
-		contentP.appendChild(columN);
-		columN.appendChild(contentN);
-		contentN.appendChild(body);
-		body.appendChild(image);
-		body.appendChild(paragraph);
-		body.appendChild(divbuttons);
-		divbuttons.appendChild(button1);
-
-		button1.addEventListener("click",formCategory);
-
-	}
+	
 }
 
 //Funcion que mostrara las producciones a partir de una categoria.
@@ -620,7 +600,9 @@ function showProductionsC(){
 
 //Funcion que mostrara las producciones desde el menu
 function showProductions(){
-	
+
+	var cookieExist = getCookie("userName");
+
 	var show = document.getElementById("Nombre");
 	show.innerHTML = "Producciones";
 
@@ -631,8 +613,50 @@ function showProductions(){
 	contentP.removeChild(contentP.firstChild);
 	}
 
+	if (cookieExist !== "") {
+		
+		var columN = document.createElement("div");
+		columN.setAttribute("class","col-6 col-md-4 mb-4");
+		var contentN = document.createElement("div");
+		contentN.setAttribute("class","card");
+		var image = document.createElement("img");
+		image.setAttribute("class","card-img-top");
+
+		image.setAttribute("src","img/producciones.jpg");
+		image.setAttribute("alt","Gestionar Producciones");
+
+		var body = document.createElement("div");
+		body.setAttribute("class","card-body");
+		var paragraph = document.createElement("h5");
+		paragraph.setAttribute("class","card-text font-weight-bold");
+		paragraph.setAttribute("style","max-height:45px; overflow:hidden; min-height:45px");
+		var text = document.createTextNode("Gestionar producciones");
+		paragraph.appendChild(text);
+
+		var divbuttons = document.createElement("div");
+		divbuttons.setAttribute = ("class","d-flex justify-content-between");
+
+		var button1 = document.createElement("button");
+		button1.setAttribute("class","btn btn-primary");
+		button1.setAttribute("id","buttonC");
+		button1.setAttribute("type","button");
+		button1.setAttribute("value","");
+		var textB = document.createTextNode("Gestionar");
+		button1.appendChild(textB);
+		
+		contentP.appendChild(columN);
+		columN.appendChild(contentN);
+		contentN.appendChild(body);
+		body.appendChild(image);
+		body.appendChild(paragraph);
+		body.appendChild(divbuttons);
+		divbuttons.appendChild(button1);
+
+		button1.addEventListener("click",formProduction);
+
+	}
+
 	video = VideoSystem.getInstance();
-	
 	var productions = video.productions;
 	var production = productions.next();
 	while (production.done !== true){
@@ -678,6 +702,8 @@ function showProductions(){
 
 //Funcion que mostrara los actores desde el menu
 function showActors(){
+
+	var cookieExist = getCookie("userName");
 	
 	var show = document.getElementById("Nombre");
 	show.innerHTML = "Actores";
@@ -687,6 +713,49 @@ function showActors(){
 
 	while (contentP.firstChild) {
 	contentP.removeChild(contentP.firstChild);
+	}
+
+	if (cookieExist !== "") {
+		
+		var columN = document.createElement("div");
+		columN.setAttribute("class","col-6 col-md-4 mb-4");
+		var contentN = document.createElement("div");
+		contentN.setAttribute("class","card");
+		var image = document.createElement("img");
+		image.setAttribute("class","card-img-top");
+
+		image.setAttribute("src","img/persona.png");
+		image.setAttribute("alt","Gestionar Actores");
+
+		var body = document.createElement("div");
+		body.setAttribute("class","card-body");
+		var paragraph = document.createElement("h5");
+		paragraph.setAttribute("class","card-text font-weight-bold");
+		paragraph.setAttribute("style","max-height:45px; overflow:hidden; min-height:45px");
+		var text = document.createTextNode("Gestionar actores");
+		paragraph.appendChild(text);
+
+		var divbuttons = document.createElement("div");
+		divbuttons.setAttribute = ("class","d-flex justify-content-between");
+
+		var button1 = document.createElement("button");
+		button1.setAttribute("class","btn btn-primary");
+		button1.setAttribute("id","buttonC");
+		button1.setAttribute("type","button");
+		button1.setAttribute("value","");
+		var textB = document.createTextNode("Gestionar");
+		button1.appendChild(textB);
+		
+		contentP.appendChild(columN);
+		columN.appendChild(contentN);
+		contentN.appendChild(body);
+		body.appendChild(image);
+		body.appendChild(paragraph);
+		body.appendChild(divbuttons);
+		divbuttons.appendChild(button1);
+
+		button1.addEventListener("click",formActor);
+
 	}
 
 	var video = VideoSystem.getInstance();
@@ -707,6 +776,7 @@ function showActors(){
 		body.setAttribute("class","card-body");
 		var paragraph = document.createElement("p");
 		paragraph.setAttribute("class","card-text font-weight-bold");
+		paragraph.setAttribute("style","max-height:45px; overflow:hidden; min-height:45px");
 		var text = document.createTextNode(actor.value.name+" "+actor.value.lastName1);
 		paragraph.appendChild(text);
 
@@ -733,6 +803,8 @@ function showActors(){
 
 //Funcion que mostrara los directores
 function ShowDirectors() {
+
+	var cookieExist = getCookie("userName");
 	
 	var show = document.getElementById("Nombre");
 	show.innerHTML = "Directores";
@@ -742,6 +814,49 @@ function ShowDirectors() {
 
 	while (contentP.firstChild) {
 	contentP.removeChild(contentP.firstChild);
+	}
+
+	if (cookieExist !== "") {
+		
+		var columN = document.createElement("div");
+		columN.setAttribute("class","col-6 col-md-4 mb-4");
+		var contentN = document.createElement("div");
+		contentN.setAttribute("class","card");
+		var image = document.createElement("img");
+		image.setAttribute("class","card-img-top");
+
+		image.setAttribute("src","img/persona.png");
+		image.setAttribute("alt","Gestionar Directores");
+
+		var body = document.createElement("div");
+		body.setAttribute("class","card-body");
+		var paragraph = document.createElement("h5");
+		paragraph.setAttribute("class","card-text font-weight-bold");
+		paragraph.setAttribute("style","max-height:45px; overflow:hidden; min-height:45px");
+		var text = document.createTextNode("Gestionar Directores");
+		paragraph.appendChild(text);
+
+		var divbuttons = document.createElement("div");
+		divbuttons.setAttribute = ("class","d-flex justify-content-between");
+
+		var button1 = document.createElement("button");
+		button1.setAttribute("class","btn btn-primary");
+		button1.setAttribute("id","buttonC");
+		button1.setAttribute("type","button");
+		button1.setAttribute("value","");
+		var textB = document.createTextNode("Gestionar");
+		button1.appendChild(textB);
+		
+		contentP.appendChild(columN);
+		columN.appendChild(contentN);
+		contentN.appendChild(body);
+		body.appendChild(image);
+		body.appendChild(paragraph);
+		body.appendChild(divbuttons);
+		divbuttons.appendChild(button1);
+
+		button1.addEventListener("click",formDirector);
+
 	}
 
 	var video = VideoSystem.getInstance();
@@ -1401,8 +1516,6 @@ function showResource() {
 	}
 
 }
-
-
 
 //Funcion que invoca todas las funciones necesarias.
 function init(){
