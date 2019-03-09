@@ -754,7 +754,7 @@ function showActors(){
 		body.appendChild(divbuttons);
 		divbuttons.appendChild(button1);
 
-		button1.addEventListener("click",formActor);
+		button1.addEventListener("click",formPerson);
 
 	}
 
@@ -855,7 +855,7 @@ function ShowDirectors() {
 		body.appendChild(divbuttons);
 		divbuttons.appendChild(button1);
 
-		button1.addEventListener("click",formDirector);
+		button1.addEventListener("click",formPerson);
 
 	}
 
