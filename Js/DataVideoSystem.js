@@ -33,21 +33,21 @@ function initPopulate(){
 	}
 	//Se crean los Movie
     try {
-		var movie1 = new Movie("Your name (Kimi no Na wa)",new Date(2016,08,26),"Japonesa","La “historia de milagros y amor” gira en torno a Mitsuha y Taki.","/img/YourName.jpg",null,null);
-		var movie2 = new Movie("Casino Royale",new Date(2006,05,20),"Inglesa" ," La trama aborda los comienzos de James Bond como espía secreto, justo después de haber obtenido su licencia para matar. Tras prevenir un ataque terrorista en el Aeropuerto Internacional de Miami","/img/CasinoRoyale.jpg",null,null);
-		var movie3 = new Movie("Avatar",new Date(2009,02,15),"Americana","Ambientada en el año 2154 los acontecimientos que narra se desarrollan en Pandora","/img/Avatar.jpg",null,coordenadas1);
-		var movie4 = new Movie("Resacon en las Vegas",new Date(2009,06,05),"Americana","Doug Billings va a casarse con Tracy. Doug realizará una despedida de soltero en Las Vegas con sus amigos.","/img/Resacon.jpg",null,null);
-		var movie5 = new Movie("Up",new Date(2009,05,29),"Americana","La película comienza mostrando la vida de Carl Fredricksen, un niño que un día volviendo del cine conoce a una alocada niña, Ellie, que acabaría siendo su esposa.","/img/Up.jpg",null,null);
-		var movie6 = new Movie("Harry Potter y la piedra filosofal",new Date(2001,01,18),"Inglesa","Se describen las aventuras del joven aprendiz de magia y hechicería Harry Potter y sus amigos Hermione Granger y Ron Weasley, en su primer año en Hogwarts. ","/img/HarryPotter.jpg",null,coordenadas2);
-		var movie7 = new Movie("It",new Date(2017,09,09),"Americana","La película cuenta la historia de siete niños en Derry, Maine, que son aterrorizados por un ser epónimo, solo para hacer frente a sus propios demonios personales en el proceso.","/img/It.jpg",null,null);
+		var movie1 = new Movie("Your name (Kimi no Na wa)",new Date(2016,08,26),"Japonesa","La “historia de milagros y amor” gira en torno a Mitsuha y Taki.","img/Your Name.jpg",null,null);
+		var movie2 = new Movie("Casino Royale",new Date(2006,05,20),"Inglesa" ," La trama aborda los comienzos de James Bond como espía secreto, justo después de haber obtenido su licencia para matar. Tras prevenir un ataque terrorista en el Aeropuerto Internacional de Miami","img/Casino Royale.jpg",null,null);
+		var movie3 = new Movie("Avatar",new Date(2009,02,15),"Americana","Ambientada en el año 2154 los acontecimientos que narra se desarrollan en Pandora","img/Avatar.jpg",null,coordenadas1);
+		var movie4 = new Movie("Resacon en las Vegas",new Date(2009,06,05),"Americana","Doug Billings va a casarse con Tracy. Doug realizará una despedida de soltero en Las Vegas con sus amigos.","img/Resacon.jpg",null,null);
+		var movie5 = new Movie("Up",new Date(2009,05,29),"Americana","La película comienza mostrando la vida de Carl Fredricksen, un niño que un día volviendo del cine conoce a una alocada niña, Ellie, que acabaría siendo su esposa.","img/Up.jpg",null,null);
+		var movie6 = new Movie("Harry Potter y la piedra filosofal",new Date(2001,01,18),"Inglesa","Se describen las aventuras del joven aprendiz de magia y hechicería Harry Potter y sus amigos Hermione Granger y Ron Weasley, en su primer año en Hogwarts. ","img/Harry Potter.jpg",null,coordenadas2);
+		var movie7 = new Movie("It",new Date(2017,09,09),"Americana","La película cuenta la historia de siete niños en Derry, Maine, que son aterrorizados por un ser epónimo, solo para hacer frente a sus propios demonios personales en el proceso.","img/It.jpg",null,null);
     } catch (error) {
         console.log("" + error);
 	}
 	//Se crean los Serie
 	try {
-		var serie1 = new Serie("Boku No Hero Academia",new Date(2016,04,03),"Japonesa","La historia tiene lugar en un mundo donde el 80% de la población ha desarrollado superpoderes, surgiendo así héroes y villanos, tal como en los cómics","/img/BokuNoHero.jpg",[season1]);
-		var serie2 = new Serie("La que se avecina",new Date(2007,04,22),"Española","La serie narra las aventuras y problemas cotidianos de una peculiar comunidad de vecinos de «alto standing» de la urbanizaciónn Mirador de Montepinar, un edificio ubicado en Madrid.","/img/LQSA.jpg",[season1,season2,season3]);
-		var serie3 = new Serie("Vikings",new Date(2013,03,03),"Canadiense","Vikings es una serie que está basada en las leyendas sobre el vikingo Ragnar Lodbrok, uno de los héroes más famosos de la cultura nórdica que saqueó Northumbria, Francia y Bretaña.","/img/Vikings.jpg",[season1,season2]);
+		var serie1 = new Serie("Boku No Hero Academia",new Date(2016,04,03),"Japonesa","La historia tiene lugar en un mundo donde el 80% de la población ha desarrollado superpoderes, surgiendo así héroes y villanos, tal como en los cómics","img/Boku No Hero.jpg",[season1]);
+		var serie2 = new Serie("La que se avecina",new Date(2007,04,22),"Española","La serie narra las aventuras y problemas cotidianos de una peculiar comunidad de vecinos de «alto standing» de la urbanizaciónn Mirador de Montepinar, un edificio ubicado en Madrid.","img/LQSA.jpg",[season1,season2,season3]);
+		var serie3 = new Serie("Vikings",new Date(2013,03,03),"Canadiense","Vikings es una serie que está basada en las leyendas sobre el vikingo Ragnar Lodbrok, uno de los héroes más famosos de la cultura nórdica que saqueó Northumbria, Francia y Bretaña.","img/Vikings.jpg",[season1,season2]);
 
 	} catch (error) {
 		console.log("" + error);
@@ -309,7 +309,7 @@ function showHomePage() {
 
 			var imgC = document.createElement("img");
 			imgC.setAttribute("class","d-block w-100");
-			imgC.setAttribute("src","img/"+production.value.title+".jpg");
+			imgC.setAttribute("src",production.value.image);
 			imgC.setAttribute("alt",production.value.title);
 
 			
@@ -560,7 +560,7 @@ function showProductionsC(){
 				var image = document.createElement("img");
 				image.setAttribute("class","card-img-top");
 
-				image.setAttribute("src","img/"+production.value.title+".jpg");
+				image.setAttribute("src",production.value.image);
 				image.setAttribute("alt",production.value.title);
 
 				var body = document.createElement("div");
@@ -668,7 +668,7 @@ function showProductions(){
 		var image = document.createElement("img");
 		image.setAttribute("class","card-img-top");
 
-		image.setAttribute("src","img/"+production.value.title+".jpg");
+		image.setAttribute("src",production.value.image);
 		image.setAttribute("alt",production.value.title);
 
 		var body = document.createElement("div");
@@ -1152,7 +1152,7 @@ function showProductionAlone(){
 			content.setAttribute("class","col-3");
 			var image = document.createElement("img");
 
-			image.setAttribute("src","img/"+production.value.title+".jpg");
+			image.setAttribute("src",production.value.image);
 			image.setAttribute("alt",production.value.title);
 			image.setAttribute("style","max-heigth:300px;");
 			image.setAttribute("class", "border border-info");
@@ -1417,7 +1417,7 @@ function showResource() {
 			content.setAttribute("class","col-3");
 			var image = document.createElement("img");
 
-			image.setAttribute("src","img/"+production.value.title+".jpg");
+			image.setAttribute("src",production.value.image);
 			image.setAttribute("alt",production.value.title);
 			image.setAttribute("style","max-heigth:300px;");
 			image.setAttribute("class", "border border-info");

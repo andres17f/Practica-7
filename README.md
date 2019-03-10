@@ -11,3 +11,6 @@ Formulario de categorias finalizado y demas objetos preparados para hacer sus fo
 
 #Version 2.2
 Formulario de producciones finalizado
+
+#Version 2.3
+Todos los formularios y funciones acabadas solo falta las relaciones
