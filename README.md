@@ -14,3 +14,6 @@ Formulario de producciones finalizado
 
 #Version 2.3
 Todos los formularios y funciones acabadas solo falta las relaciones
+
+#Version 3.0
+Version final *Revisar los metodos de asociacion, posible fallo en los parametros de entrada

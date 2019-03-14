@@ -439,9 +439,6 @@ var VideoSystem = (function () {
                 }
                 return _categories[categoryPosition].productions.length;
 			}
-
-// EL METODO DE ASIGNAR Y DESASIGNAR PRODUCCIONES A LOS DIRECTORES NO ME FUNCIONAN
-//******************************************************************************
 			
 			//Metodo para asignar producciones a los directores
 			this.assignDirector = function (director, production) {

@@ -92,6 +92,7 @@ function initPopulate(){
 	try {
 		var user1 = new User("andres","andres@gmail.com","admin1");
 		var user2 = new User("alba","alba@gmail.com","admin2");
+		var userPrueba = new User("prueba","prueba@gmail.com","prueba");
 	} catch (error) {
 		console.log("" + error);
 	}
@@ -162,6 +163,7 @@ function initPopulate(){
 	try {
 		video.addUser(user1);
 		video.addUser(user2);
+		video.addUser(userPrueba);
 	} catch (error) {
 		console.log("" + error);
 	}
@@ -178,6 +180,7 @@ function initPopulate(){
 		video.assignCategory(category5,movie5);
 		video.assignCategory(category6,movie6);
 		video.assignCategory(category7,movie7);
+		//video.deassignCategory(category7,movie7);
 	} catch (error) {
 		console.log("" + error);
 	}
@@ -188,6 +191,7 @@ function initPopulate(){
 		video.assignActor(persona10,serie2);
 		video.assignActor(persona11,serie3);
 		video.assignActor(persona12,serie3);
+		//video.deassignActor(persona12,serie3);
 	} catch (error) {
 		console.log("" + error);
 	}
@@ -202,6 +206,7 @@ function initPopulate(){
 		video.assignDirector(persona6,movie6);
 		video.assignDirector(persona7,movie7);
 		video.assignDirector(persona8,serie1);
+		//video.deassignDirector(persona8,serie1);
 	} catch (error) {
 		console.log("" + error);
 	}
@@ -984,8 +989,8 @@ function showActorAlone(){
 				divI.setAttribute("class", "mr-2 text-center");
 
 				var image2 = document.createElement("img");
-				image2.setAttribute("src","img/"+production.value.title+".jpg");
-				image2.setAttribute("alt",production.value.title);
+				image2.setAttribute("src",production.value.image);
+				image2.setAttribute("alt",production.value.image);
 				image2.setAttribute("style", "height: 80px");
 				image2.setAttribute("class","d-block mb-1");
 
@@ -1097,8 +1102,8 @@ function showDirectorAlone(){
 				divI.setAttribute("class", "mr-2 text-center");
 
 				var image2 = document.createElement("img");
-				image2.setAttribute("src","img/"+production.value.title+".jpg");
-				image2.setAttribute("alt",production.value.title);
+				image2.setAttribute("src",production.value.image);
+				image2.setAttribute("alt",production.value.image);
 				image2.setAttribute("style", "height: 80px");
 				image2.setAttribute("class","d-block mb-1");
 
@@ -1106,7 +1111,7 @@ function showDirectorAlone(){
 				b1.setAttribute("class","btn btn-default btn-sm mb-1");
 				b1.setAttribute("id","buttonP");
 				b1.setAttribute("type","button");
-				b1.setAttribute("value",production.value.title);
+				b1.setAttribute("value",production.value.tile);
 				var textBt = document.createTextNode(production.value.title);
 				b1.appendChild(textBt);
 
@@ -1260,7 +1265,6 @@ function showProductionAlone(){
 
 			var directors = video.directors;
 			var director = directors.next();
-			
 			while (director.done !== true){
 
 				var productions = video.getProductionsDirector(director.value);
