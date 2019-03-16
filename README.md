@@ -20,3 +20,6 @@ Version final *Revisar los metodos de asociacion, posible fallo en los parametro
 
 #Version 3.1
 Asignamientos completados subida para aclarar modificaciones
+
+#Version 4.0
+Version final todo implementado *Pequeño fallo de desasignar directores creo que se arrastra desde la practica 4.
