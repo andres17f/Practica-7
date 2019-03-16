@@ -909,7 +909,7 @@ function ShowDirectors() {
 
 //Funcion que muestra a un solo actor con su informacion.
 function showActorAlone(){
-
+	
 	var show = document.getElementById("Nombre");
 	show.innerHTML = "Actores";
 

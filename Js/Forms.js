@@ -1003,7 +1003,7 @@ function formProduction() {
 //Funcion que asigna y desasigna categorias, y personas a una produccion
 function assignsProductions(){
   var show = document.getElementById("Nombre");
-	show.innerHTML = "Asignaciones de Produccion";
+  show.innerHTML = "Asignaciones de Produccion";
 
   var contentP = document.getElementById("principal");
   contentP.setAttribute("class","d-block")
@@ -1050,7 +1050,7 @@ function assignsProductions(){
 	brAse.setAttribute("id","buttonAse");
 	brAse.setAttribute("type","button");
 	brAse.setAttribute("value","");
-	var textAse = document.createTextNode("Desasignar");
+	var textAse = document.createTextNode("Asignado");
   brAse.appendChild(textAse);
 
   var brDse = document.createElement ("button");
@@ -1058,7 +1058,7 @@ function assignsProductions(){
 	brDse.setAttribute("id","buttonAse");
 	brDse.setAttribute("type","button");
 	brDse.setAttribute("value","");
-	var textDse = document.createTextNode("Asignar");
+	var textDse = document.createTextNode("No Asignado");
   brDse.appendChild(textDse);
 
   contentP.appendChild(formAsgP);
@@ -1076,30 +1076,52 @@ function assignsProductions(){
 function showAssigns() {
   var productionSelected = document.forms["asgProduction"]["selectTitleS"].value;
 
+  //Recorro todas las producciones para seleccionarla y mandarla en los input
+  var video = VideoSystem.getInstance();
+  var productions = video.productions;
+	var production = productions.next();
+	while (production.done !== true){
+
+    if (production.value.title == productionSelected) {
+
+      var objectpro = production.value;
+        
+    }
+      production = productions.next();
+  }
+
   var contentP = document.getElementById("principal");
   contentP.setAttribute("class","d-block")
 
   var divF = document.createElement("div");
-  divF.setAttribute("class","d-flex mt-3 border border-ligth");
+  divF.setAttribute("class","mt-3 border border-ligth");
   contentP.appendChild(divF);
   
-  //Div izquierdo donde estaran las cateogrias
+  //Div 1 donde estaras las categorias
   var div1 = document.createElement("div");
-  div1.setAttribute("style","width:33%");
+  div1.setAttribute("style","width:100%");
   var titleC = document.createElement("h6");
 	titleC.setAttribute("class", " text-center mt-1")
 	var textC = document.createTextNode("Categorias:");
   titleC.appendChild(textC);
   div1.appendChild(titleC);
 
-  var divList1 = document.createElement("div");
-	divList1.setAttribute("class","");
-	divList1.setAttribute("style","width:100%");
+  var formAsigns1 = document.createElement("form");
+	formAsigns1.setAttribute("class","mb-1 mt-2");
+	formAsigns1.setAttribute("style","width:100%");
+	formAsigns1.setAttribute("name","formAsign1");
+  formAsigns1.setAttribute("id","formAsign1");
 
-	div1.appendChild(divList1);
+  var divList1 = document.createElement("select");
+	divList1.setAttribute("id","selectNameC");
+	divList1.setAttribute("name","selectNameC");
+	divList1.setAttribute("class","form-control");
+  divList1.setAttribute("placeholder","");
+
+  div1.appendChild(formAsigns1);
+  formAsigns1.appendChild(divList1);
   
   //Recorro todas las categorias del sistema
-	var video = VideoSystem.getInstance();
 	var categories = video.categories;
 	var category = categories.next();
 	while (category.done !== true){
@@ -1111,29 +1133,12 @@ function showAssigns() {
 
       if (production.value.title == productionSelected) {
 
-        var divC = document.createElement("div");
-        divC.setAttribute("class","d-flex flex-row border border-ligth")
-        divList1.appendChild(divC);
-
-        var butEle = document.createElement("button");
-        butEle.setAttribute("class","text-center btn m-1");
-        butEle.setAttribute("style","width:70%")
-        butEle.setAttribute("value",category.value.name);
-        var textB = document.createTextNode(category.value.name);
-        butEle.appendChild(textB);
-		
-		    divC.appendChild(butEle);
-		    butEle.addEventListener("click",showProductionsC);
-
-        var butDel = document.createElement("button");
-        butDel.setAttribute("class","text-center btn m-1");
-        butDel.setAttribute("style","width:30%")
-        butDel.setAttribute("value",category.value.name);
-        var textBD = document.createTextNode("Desasignar");
-        butDel.appendChild(textBD);
-
-        divC.appendChild(butDel);
-        butDel.addEventListener("click", function () {  video.deassignCategory(category.value , production.value); });
+        var option = document.createElement("option");
+        option.setAttribute("value",category.value.name);
+        var textop = document.createTextNode(category.value.name);
+        option.appendChild(textop);
+    
+        divList1.appendChild(option);
         
       }
       production = productions.next();
@@ -1142,59 +1147,59 @@ function showAssigns() {
 
   }
 
+  var br1 = document.createElement ("button");
+	br1.setAttribute("class","btn btn-secondary btn-lg mt-2");
+	br1.setAttribute("id","button1");
+	br1.setAttribute("type","button");
+	br1.setAttribute("value",objectpro.title);
+	var textBr1 = document.createTextNode("Desasignar");
+  br1.appendChild(textBr1);
+
+  formAsigns1.appendChild(br1);
+  br1.addEventListener ("click", desasignCategory);
+
   //Div 2 donde estaran los directores
   var div2 = document.createElement("div");
-  div2.setAttribute("style","width:33%");
+  div2.setAttribute("style","width:100%");
   var titleD = document.createElement("h6");
 	titleD.setAttribute("class", "text-center mt-1")
 	var textD = document.createTextNode("Directores:");
   titleD.appendChild(textD);
   div2.appendChild(titleD);
 
-  var divList2 = document.createElement("div");
-	divList2.setAttribute("class","");
-	divList2.setAttribute("style","width:100%");
+  var formAsigns2 = document.createElement("form");
+	formAsigns2.setAttribute("class","mb-1 mt-2");
+	formAsigns2.setAttribute("style","width:100%");
+	formAsigns2.setAttribute("name","formAsign2");
+  formAsigns2.setAttribute("id","formAsign2");
 
-  div2.appendChild(divList2);
+  var divList2 = document.createElement("select");
+	divList2.setAttribute("id","selectNameD");
+	divList2.setAttribute("name","selectNameD");
+	divList2.setAttribute("class","form-control");
+  divList2.setAttribute("placeholder","");
+
+  div2.appendChild(formAsigns2);
+  formAsigns2.appendChild(divList2);
 
   //Recorro todas las directores del sistema
   var directors = video.directors;
 	var director = directors.next();
 	while (director.done !== true){
 
-    //Recorro todas las producciones dek director
+    //Recorro todas las producciones del director
     var productions = video.getProductionsDirector(director.value);
 		var production = productions.next();
 		while (production.done !== true){
 					
 			if(production.value.title == productionSelected){
 
-        var divC = document.createElement("div");
-        divC.setAttribute("class","d-flex flex-row border border-ligth")
-        divList2.appendChild(divC);
-
-				var butEle = document.createElement("button");
-        butEle.setAttribute("class","text-center btn m-1");
-        butEle.setAttribute("style","width:70%")
-        butEle.setAttribute("value",director.value.name);
-        var textB = document.createTextNode(director.value.name);
-        butEle.appendChild(textB);
-		
-		    divC.appendChild(butEle);
-		    butEle.addEventListener("click",showDirectorAlone);
-
-        var butDel = document.createElement("button");
-        butDel.setAttribute("class","text-center btn m-1");
-        butDel.setAttribute("style","width:30%")
-        butDel.setAttribute("value","");
-        var textBD = document.createTextNode("Desasignar");
-        butDel.appendChild(textBD);
-
-        console.log(director.value);
-        console.log(production.value);
-
-        divC.appendChild(butDel);
-        butDel.addEventListener("click", function () {  video.deassignDirector(director.value , production.value); });
+        var option = document.createElement("option");
+        option.setAttribute("value",director.value.name);
+        var textop = document.createTextNode(director.value.name + " " + director.value.lastName1);
+        option.appendChild(textop);
+    
+        divList2.appendChild(option);
 	
 			}
 
@@ -1205,20 +1210,40 @@ function showAssigns() {
   
   }
 
+  var br2 = document.createElement ("button");
+	br2.setAttribute("class","btn btn-secondary btn-lg mt-2");
+	br2.setAttribute("id","button1");
+	br2.setAttribute("type","button");
+	br2.setAttribute("value",objectpro.title);
+	var textBr2 = document.createTextNode("Desasignar");
+  br2.appendChild(textBr2);
+
+  formAsigns2.appendChild(br2);
+  br2.addEventListener ("click", desasignDirector);
+
   //Div tres donde estaran los actores
   var div3 = document.createElement("div");
-  div3.setAttribute("style","width:33%");
+  div3.setAttribute("style","width:100%");
   var titleA = document.createElement("h6");
 	titleA.setAttribute("class", "text-center mt-1")
 	var textA = document.createTextNode("Actores:");
   titleA.appendChild(textA);
   div3.appendChild(titleA);
 
-  var divList3 = document.createElement("div");
-	divList3.setAttribute("class","");
-	divList3.setAttribute("style","width:100%");
+  var formAsigns3 = document.createElement("form");
+	formAsigns3.setAttribute("class","mb-1 mt-2");
+	formAsigns3.setAttribute("style","width:100%");
+	formAsigns3.setAttribute("name","formAsign3");
+  formAsigns3.setAttribute("id","formAsign3");
 
-  div3.appendChild(divList3);
+  var divList3 = document.createElement("select");
+	divList3.setAttribute("id","selectNameA");
+	divList3.setAttribute("name","selectNameA");
+	divList3.setAttribute("class","form-control");
+  divList3.setAttribute("placeholder","");
+
+  div3.appendChild(formAsigns3);
+  formAsigns3.appendChild(divList3);
 
   //Recorro todas las actores del sistema
   var actors = video.actors;
@@ -1232,32 +1257,12 @@ function showAssigns() {
 					
 			if(production.value.title == productionSelected){
 
-        var divC = document.createElement("div");
-        divC.setAttribute("class","d-flex flex-row border border-ligth")
-        divList3.appendChild(divC);
-
-				var butEle = document.createElement("button");
-        butEle.setAttribute("class","text-center btn m-1");
-        butEle.setAttribute("style","width:70%")
-        butEle.setAttribute("value",actor.value.name);
-        var textB = document.createTextNode(actor.value.name);
-        butEle.appendChild(textB);
-		
-		    divC.appendChild(butEle);
-		    butEle.addEventListener("click",showActorAlone);
-
-        var butDel = document.createElement("button");
-        butDel.setAttribute("class","text-center btn m-1");
-        butDel.setAttribute("style","width:30%")
-        butDel.setAttribute("value","");
-        var textBD2 = document.createTextNode("Desasignar");
-        butDel.appendChild(textBD2);
-
-        console.log(actor.value);
-        console.log(production.value);
-
-        divC.appendChild(butDel);
-        butDel.addEventListener("click", function () {  video.deassignActor(actor.value , production.value); });
+        var option = document.createElement("option");
+        option.setAttribute("value",actor.value.name);
+        var textop = document.createTextNode(actor.value.name + " " + actor.value.lastName1);
+        option.appendChild(textop);
+    
+        divList3.appendChild(option);
 	
 			}
 
@@ -1268,9 +1273,103 @@ function showAssigns() {
   
   }
 
+  var br3 = document.createElement ("button");
+	br3.setAttribute("class","btn btn-secondary btn-lg mt-2");
+	br3.setAttribute("id","button1");
+	br3.setAttribute("type","button");
+	br3.setAttribute("value",objectpro.title);
+	var textBr3 = document.createTextNode("Desasignar");
+  br3.appendChild(textBr3);
+
+  formAsigns3.appendChild(br3);
+  br3.addEventListener ("click", desasignActor);
+
   divF.appendChild(div1);
   divF.appendChild(div2);
   divF.appendChild(div3);
+}
+
+//Funcion que desasigna una categoria de una produccion
+function desasignCategory() {
+  var categorySelected = document.forms["formAsign1"]["selectNameC"].value;
+
+  var video = VideoSystem.getInstance();
+  var categories = video.categories;
+	var category = categories.next();
+	while (category.done !== true){
+
+    if (category.value.name == categorySelected) {
+		    //Obtengo las producciones de esa categoria
+        var productions = video.getProductionsCategory(category.value);
+        var production = productions.next();
+        while (production.done !== true){
+
+          if (production.value.title == this.value) {
+
+            video.deassignCategory(category.value,production.value);
+            
+          }
+          production = productions.next();
+        }
+    }
+  category = categories.next();
+  }
+
+}
+
+//Funcion que desasigna un director de una produccion
+function desasignDirector() {
+  var directorSelected = document.forms["formAsign2"]["selectNameD"].value;
+
+  var video = VideoSystem.getInstance();
+  var directors = video.directors;
+	var director = directors.next();
+	while (director.done !== true){
+
+    if (director.value.name == directorSelected) {
+		    //Obtengo las producciones de esa director
+        var productions = video.getProductionsDirector(director.value);
+        var production = productions.next();
+        while (production.done !== true){
+
+          if (production.value.title == this.value) {
+
+            video.deassignDirector(director.value,production.value);
+            
+          }
+          production = productions.next();
+        }
+    }
+  director = directors.next();
+  }  
+
+}
+
+//FUNCION QUE DESASIGNA UN ACTOR DE UNA PRODUCCION
+function desasignActor() {
+  var actorSelected = document.forms["formAsign3"]["selectNameA"].value;
+
+  var video = VideoSystem.getInstance();
+  var actors = video.actors;
+	var actor = actors.next();
+	while (actor.done !== true){
+
+    if (actor.value.name == actorSelected) {
+		    //Obtengo las producciones de esa director
+        var productions = video.getProductionsActor(actor.value);
+        var production = productions.next();
+        while (production.done !== true){
+
+          if (production.value.title == this.value) {
+
+            video.deassignActor(actor.value,production.value);
+            
+          }
+          production = productions.next();
+        }
+    }
+    actor = actors.next();
+  }  
 }
 
 //Funcion que mostrara lo que no tiene asignado una produccion y se le puede asignar
@@ -1305,15 +1404,14 @@ function showDesasingns() {
 	var categories = video.categories;
 	var category = categories.next();
 	while (category.done !== true){
-    console.log(category.value.name);
+
 		//Obtengo las producciones de esa categoria
 		var productions = video.getProductionsCategory(category.value);
 		var production = productions.next();
 		while (production.done !== true){
 
-      console.log(production.value.title);
       if (production.value.title == productionSelected) {
-        console.log("entra al titulo igual a produccion elegida");
+
         search = false;
         
       }
@@ -1345,8 +1443,11 @@ function showDesasingns() {
       var textBD = document.createTextNode("Asignar");
       butDel.appendChild(textBD);
 
+      var catpas = category.value;
+      var prodpas = production.value;
+
       divC.appendChild(butDel);
-      butDel.addEventListener("click", function () {  video.assignCategory(category.value , production.value); });
+      butDel.addEventListener("click", function () {  video.assignCategory(catpas,prodpas); });
 
     }
 
@@ -1376,7 +1477,7 @@ function showDesasingns() {
 	var director = directors.next();
 	while (director.done !== true){
 
-    //Recorro todas las producciones dek director
+    //Recorro todas las producciones del director
     var productions = video.getProductionsDirector(director.value);
 		var production = productions.next();
 		while (production.done !== true){
@@ -1404,11 +1505,14 @@ function showDesasingns() {
         var textBD = document.createTextNode("Asignar");
         butDel.appendChild(textBD);
 
-        console.log(director.value);
-        console.log(production.value);
+        var directorpas = director.value;
+        var prodpas = production.value;
+
+        console.log("entra a director");
+        console.log(directorpas);
 
         divC.appendChild(butDel);
-        butDel.addEventListener("click", function () {  video.assignDirector(director.value , production.value); });
+        butDel.addEventListener("click", function () {  video.assignDirector(directorpas,prodpas); });
 	
 			}
 
@@ -1439,7 +1543,7 @@ function showDesasingns() {
 	var actor = actors.next();
 	while (actor.done !== true){
 
-    //Recorro todas las producciones dek director
+    //Recorro todas las producciones del actor
     var productions = video.getProductionsActor(actor.value);
 		var production = productions.next();
 		while (production.done !== true){
@@ -1467,11 +1571,11 @@ function showDesasingns() {
         var textBD2 = document.createTextNode("Asignar");
         butDel.appendChild(textBD2);
 
-        console.log(actor.value);
-        console.log(production.value);
+        var actorpas = actor.value;
+        var prodpas = production.value;
 
         divC.appendChild(butDel);
-        butDel.addEventListener("click", function () {  video.deassignActor(actor.value , production.value); });
+        butDel.addEventListener("click", function () {  video.assignActor(actorpas,prodpas); });
 	
 			}
 

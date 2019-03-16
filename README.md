@@ -17,3 +17,6 @@ Todos los formularios y funciones acabadas solo falta las relaciones
 
 #Version 3.0
 Version final *Revisar los metodos de asociacion, posible fallo en los parametros de entrada
+
+#Version 3.1
+Asignamientos completados subida para aclarar modificaciones
